@@ -18,10 +18,10 @@ def convert():
         'Dissimile', 'Superiori', 'Laboro', 'Torquate', 'sunt', 
     ]
 
-    tpl = Template(request.form['template'])
+    tpl = app.jinja_env.from_string(request.form['template'])
     values = {}
 
-    if bool(int(request.form['dummyvalues'])):
+    if int(request.form['dummyvalues']):
         # List variables (introspection)
         env = Environment()
         vars_to_fill = meta.find_undeclared_variables(env.parse(request.form['template']))
@@ -33,12 +33,11 @@ def convert():
 
     rendered_tpl = tpl.render(values)
 
-    if bool(int(request.form['showwhitespaces'])):
+    if int(request.form['showwhitespaces']):
         # Replace whitespaces with a visible character (will be grayed with javascript)
         rendered_tpl = rendered_tpl.replace(' ', u'•')
 
     return rendered_tpl.replace('\n', '<br />')
-
 
 if __name__ == "__main__":
     app.debug = True
