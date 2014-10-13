@@ -13,7 +13,10 @@ All you need is Python and preferably [pip](https://pypi.python.org/pypi/pip).
 
 ## Usage 
 
-You are all set, go to `http://localhost:5000/` and have fun.  
+You are all set, go to `http://localhost:5000/` and have fun.
+
+Custom filters can be added under the filters/ directory.
+See filters/test_filter.py for an example
 
 
 ## Preview
