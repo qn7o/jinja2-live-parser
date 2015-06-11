@@ -19,5 +19,3 @@ A lightweight live parser for [Jinja2](http://jinja.pocoo.org/docs/dev/) based o
 * Open `http://localhost:3000/<channel>/<prefix>/<template>` in your browser, and edit your template in your favorite editor and have your preview pane refreshed with your changes automatically
 
 Note that in the URL, you have to provide your template path you want to edit in the form of: `http://localhost:3000/<channel>/<prefix>/<template>`
-
-You are all set, go to `http://localhost:5000/` and have fun.
