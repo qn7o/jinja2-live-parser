@@ -31,13 +31,10 @@ def render_post(channel, prefix, name):
     except:
         return 'Invalid JSON!'
     rendered_tpl = template.render(values)
-
     if bool(int(request.form['showwhitespaces'])):
         rendered_tpl = rendered_tpl.replace(' ', u'•')
 
     return Markup(rendered_tpl)
 
-
 if __name__ == "__main__":
-    app.debug = True
     app.run(host='0.0.0.0')

@@ -7,7 +7,6 @@ $(document).ready(function(){
 
     $('#convert').click(function() {
         var is_checked_showwhitespaces = $('input[name="showwhitespaces"]').is(':checked') ? 1:0;
-
         // Push the input to the Jinja2 api (Python)
         $.post(window.location, {
             values: $('#values').val(),
