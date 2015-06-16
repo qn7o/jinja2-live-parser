@@ -6,7 +6,7 @@ A lightweight live parser for [Jinja2](http://jinja.pocoo.org/docs/dev/) based o
 
 ## Install
 
-    $ git clone git@github.com:sherifzain/jinja2-live-parser.git
+    $ git clone git@github.com:falconsocial/jinja2-live-parser.git
     $ pip install -r requirements.txt
     $ python parser.py
 
