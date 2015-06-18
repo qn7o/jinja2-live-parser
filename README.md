@@ -10,6 +10,8 @@ A lightweight live parser for [Jinja2](http://jinja.pocoo.org/docs/dev/) based o
     $ pip install -r requirements.txt
     $ python parser.py
 
+Also, you'll need to have browsersync installed. Instructions on how to install it can be found [here](http://www.browsersync.io/#install)
+
 ## Usage
 
 * Clone the `notifications-templates` repository on your local file system
