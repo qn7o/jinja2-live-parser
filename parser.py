@@ -2,6 +2,7 @@
 from flask import Flask, render_template, request, Markup
 from jinja2 import Template, Environment, meta, FileSystemLoader
 from random import choice
+from dronte import Objector
 import json
 import os
 
@@ -11,7 +12,7 @@ app = Flask(__name__)
 
 def _load_template(channel, prefix, name):
     env = Environment(
-        loader=FileSystemLoader(os.path.join('/opt', channel, prefix)))
+        loader=FileSystemLoader(os.path.join(app.config['templates_path'], channel, prefix)))
     return env.get_template(name)
 
 
@@ -37,4 +38,6 @@ def render_post(channel, prefix, name):
     return Markup(rendered_tpl)
 
 if __name__ == "__main__":
+    config = Objector.from_argv()
+    app.config.update(config)
     app.run(host='0.0.0.0')
