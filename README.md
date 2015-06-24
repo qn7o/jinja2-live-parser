@@ -20,4 +20,4 @@ Also, you'll need to have browsersync installed. Instructions on how to install 
     `$ browser-sync start --config bs-config.js`
 * Open `http://localhost:3000/<channel>/<prefix>/<template>` in your browser, and edit your template in your favorite editor and have your preview pane refreshed with your changes automatically
 
-Note that in the URL, you have to provide your template path you want to edit in the form of: `http://localhost:3000/<channel>/<prefix>/<template>`
+Note that in the URL, you have to provide your template path you want to edit in the form of: `http://localhost:3000/render/<channel>/<prefix>/<template>`
