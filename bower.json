@@ -1,0 +1,13 @@
+{
+  "name": "falcon-jinja-parser",
+  "version": "0.0.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "codemirror": "~5.3.0"
+  },
+  "devDependencies": {}
+}
