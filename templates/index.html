@@ -1,49 +1,73 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <script src="{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bower_modules/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bower_modules/ace-builds/src-noconflict/ace.js') }}"></script>
+    
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/convert.js') }}"></script>
 
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link src="{{ url_for('static', filename='bower_modules/codemirror/lib/codemirror.css') }}">
     <title>Jinja live parser</title>
-
     <script>
-        $(document).ready(function() {
-          function setHeight() {
+    $(document).ready(function() {
+        function setHeight() {
             windowHeight = $(window).innerHeight();
             $('.boxes').css('min-height', windowHeight);
-          };
-          setHeight();
-          
-          $(window).resize(function() {
+        };
+        setHeight();
+
+        $(window).resize(function() {
             setHeight();
-          });
         });
+
+        // trigger extension
+        ace.require("ace/ext/language_tools");
+        var editor = ace.edit("editor");
+        console.log(editor);
+        editor.session.setMode("ace/mode/json");
+        editor.setTheme("ace/theme/twilight");
+        // enable autocompletion and snippets
+        // editor.setOptions({
+        //     enableBasicAutocompletion: true,
+        //     enableSnippets: true,
+        //     enableLiveAutocompletion: false
+        // });
+    });
     </script>
 </head>
 
 <body>
-    <div id="page_wrap">
-        <div class="boxes">
-            <div id="render" class="boxes__preview">
-                {{ output }}
-            </div>
-            <div class="boxes__sidebar box">
-                <div class="boxes__json">
-                    <textarea id="values" class="json_textarea" placeholder="Place JSON here"></textarea>
+    <form>
+        <div id="page_wrap">
+            <div class="boxes">
+                <div id="render" class="boxes__preview">
+                    {{ output }}
                 </div>
-                <div class="boxes__settings box">
-                    <label><input type="checkbox" name="showwhitespaces" checked="checked" /> Show whitespaces</label><br/>
-                    <input type="button" class="btn btn-success" id="convert" value="Preview" />
-                    <input type="button" class="btn btn-danger" id="clear" value="Clear" />
+                <div class="boxes__sidebar box">
+                    <div class="boxes__json">
+<div id="editor" class="json_textarea">
+{
+    "username": "Lars"
+}
+</div>
+                        <!-- <textarea id="values" class="json_textarea" placeholder="Place JSON here"></textarea> -->
+                    </div>
+                    <div class="boxes__settings box">
+                        <label>
+                            <input type="checkbox" name="showwhitespaces" checked="checked" /> Show whitespaces</label>
+                        <br/>
+                        <input type="button" class="btn btn-success" id="convert" value="Preview" />
+                        <input type="button" class="btn btn-danger" id="clear" value="Clear" />
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
     <!-- <form class="container">
         <div class="row">
             <div class="col-md-5">
