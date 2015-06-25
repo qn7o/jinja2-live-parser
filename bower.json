@@ -7,7 +7,8 @@
     "components"
   ],
   "dependencies": {
-    "codemirror": "~5.3.0"
+    "jquery": "~2.1.4",
+    "ace-builds": "~1.1.9"
   },
   "devDependencies": {}
 }
