@@ -42,10 +42,10 @@ label {
 }
 
 .json_textarea {
-    font-family: "Courier New", Courier, monospace;
+    /*font-family: "Courier New", Courier, monospace;*/
     width: 100%;
     position: absolute;
-    padding: 10px 15px;
+    /*padding: 10px 15px;*/
     top: 0;
     bottom: 0;
     border: 0;
