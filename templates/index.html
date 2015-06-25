@@ -5,13 +5,46 @@
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/convert.js') }}"></script>
 
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <title>Jinja live parser</title>
+
+    <script>
+        $(document).ready(function() {
+          function setHeight() {
+            windowHeight = $(window).innerHeight();
+            $('.boxes').css('min-height', windowHeight);
+          };
+          setHeight();
+          
+          $(window).resize(function() {
+            setHeight();
+          });
+        });
+    </script>
 </head>
 
 <body>
-    <form class="container">
+    <div id="page_wrap">
+        <div class="boxes">
+            <div id="render" class="boxes__preview">
+                {{ output }}
+            </div>
+            <div class="boxes__sidebar box">
+                <div class="boxes__json">
+                    <textarea id="values" class="json_textarea" placeholder="Place JSON here"></textarea>
+                </div>
+                <div class="boxes__settings box">
+                    <label><input type="checkbox" name="showwhitespaces" checked="checked" /> Show whitespaces</label><br/>
+                    <input type="button" class="btn btn-success" id="convert" value="Preview" />
+                    <input type="button" class="btn btn-danger" id="clear" value="Clear" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <form class="container">
         <div class="row">
             <div class="col-md-5">
                 <h1>Template args (JSON)</h1>
@@ -30,7 +63,7 @@
                 </div>
             </div>
         </div>
-    </form>
+    </form> -->
 </body>
 
 </html>
