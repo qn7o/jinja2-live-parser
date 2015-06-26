@@ -42,14 +42,16 @@ label {
 }
 
 .json_textarea {
-    /*font-family: "Courier New", Courier, monospace;*/
     width: 100%;
     position: absolute;
-    /*padding: 10px 15px;*/
     top: 0;
-    bottom: 0;
+    bottom: 34px;
     border: 0;
-    resize: none;
+}
+.editor_buttons {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 .json_textarea:focus {
     outline: none;

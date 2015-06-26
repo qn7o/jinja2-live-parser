@@ -9,7 +9,6 @@ angular.module('Falcon-email', [])
  			});
 		}
 		
+		//Initialize the template with no data.
 		$scope.updateRender({})
-
-
 	});

@@ -41,11 +41,11 @@
                 <div id="render" class="boxes__preview">
                     <render-preview html="render"></render-preview>
                 </div>
-                <div class="boxes__sidebar box">
+                <div class="boxes__sidebar">
                     <div class="boxes__json">
-                        <editor on-update="updateRender($value)"></editor>
+                        <editor on-update="updateRender($value)" on-reset="updateRender($value)"></editor>
                     </div>
-                    <div class="boxes__settings box">
+                    <div class="boxes__settings">
                     </div>
                 </div>
             </div>
