@@ -13,6 +13,7 @@ app = Flask(__name__)
 # Load filters in filters dir
 filter_path='filters'
 filter_files =  [ ]
+added_filters = {}
 
 # Find py files and turn then into filterpath/blah/filter.py
 for e in os.walk(filter_path, followlinks=True):
@@ -22,11 +23,18 @@ for e in os.walk(filter_path, followlinks=True):
 
 for filter in filter_files:
     mod_name,file_ext = os.path.splitext(os.path.split(filter)[-1])
-    if file_ext.lower() == '.py':
-        py_mod = imp.load_source(mod_name, filter)
-        for name, function in getmembers(py_mod):
-                if isfunction(function):
-                    app.jinja_env.filters[name] = function
+    py_mod = imp.load_source(mod_name, filter)
+    for name, function in getmembers(py_mod):
+            if isfunction(function) and not name.startswith('_'):
+                # Saving filter info to put it in HTML at some point
+                added_filters[name] = function.__doc__
+                # add filter to jinja
+                app.jinja_env.filters[name] = function
+
+# These are the added filters.  must add these name + doc strings to the html
+# Also do this for built-in jinja filters
+#for f in sorted(added_filters):
+#    print("%s: %s" % (f, added_filters[f]))
 
 @app.route("/")
 def hello():
