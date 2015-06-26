@@ -1,0 +1,5 @@
+venv
+
+**/*pyc
+
+filters/ansible
