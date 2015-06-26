@@ -1,21 +1,65 @@
-#template,
-#render,
-#values {
-    width: 100%;
-    min-height: 300px;
-    resize: vertical;
-    font-family: "Courier New", Courier, monospace;
-    border: 1px solid #ccc;
-}
-
-#render {
-    background: #eee;
-}
-
 span.whitespace {
     color: #ccc;
 }
 
 label {
     font-weight: normal;
+}
+
+/*
+    Page layout
+*/
+#page_wrap {
+    width: 100%;
+    position: relative;
+    background-color: red;
+}
+
+.boxes {
+    display: flex;
+    align-items: stretch;
+}
+
+.boxes__preview {
+    overflow: hidden;
+    order: 1;
+    width: 100%;
+    background-color: #bcbcbf;
+}
+
+.boxes__sidebar {
+    width: 35%;
+    background-color: #191919;
+    order: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.boxes__json {
+    order: 1;
+    flex-grow: 1;
+    position: relative;
+}
+
+.json_textarea {
+    /*font-family: "Courier New", Courier, monospace;*/
+    width: 100%;
+    position: absolute;
+    /*padding: 10px 15px;*/
+    top: 0;
+    bottom: 0;
+    border: 0;
+    resize: none;
+}
+.json_textarea:focus {
+    outline: none;
+    border: 0;
+}
+
+.boxes__settings {
+    color: #fbfbff;
+    padding: 10px 15px;
+    order: 2;
+    flex-grow: 1;
+    position: relative;
 }

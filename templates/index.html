@@ -1,32 +1,56 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <script src="{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bower_modules/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bower_modules/ace-builds/src-noconflict/ace.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/convert.js') }}"></script>
-
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link src="{{ url_for('static', filename='bower_modules/codemirror/lib/codemirror.css') }}">
     <title>Jinja live parser</title>
+    <script>
+    $(document).ready(function() {
+        function setHeight() {
+            windowHeight = $(window).innerHeight();
+            $('.boxes').css('min-height', windowHeight);
+        };
+        setHeight();
+
+        $(window).resize(function() {
+            setHeight();
+        });
+
+        // trigger extension
+        ace.require("ace/ext/language_tools");
+
+        var editor = ace.edit("editor");
+        editor.session.setMode("ace/mode/json");
+        editor.setTheme("ace/theme/twilight");
+    });
+    </script>
 </head>
 
 <body>
-    <form class="container">
-        <div class="row">
-            <div class="col-md-5">
-                <h1>Template args (JSON)</h1>
-                <textarea id="values"></textarea>
-            </div>
-            <div class="col-md-5">
-                <h1>Preview</h1>
-                <div id="render">{{output}}</div>
-            </div>
-            <div class="col-md-2">
-                <h1>Settings</h1>
-                <div id="settings">
-                    <label><input type="checkbox" name="showwhitespaces" checked="checked" /> Show whitespaces</label><br/>
-                    <input type="button" class="btn btn-success" id="convert" value="Preview" />
-                    <input type="button" class="btn btn-danger" id="clear" value="Clear" />
+    <form>
+        <div id="page_wrap">
+            <div class="boxes">
+                <div id="render" class="boxes__preview">
+                    {{ output }}
+                </div>
+                <div class="boxes__sidebar box">
+                    <div class="boxes__json">
+                        <div id="editor" class="json_textarea"></div>
+                    </div>
+                    <div class="boxes__settings box">
+                        <label>
+                            <input type="checkbox" name="showwhitespaces" /> Show whitespaces</label>
+                        <br/>
+                        <input type="button" class="btn btn-success" id="convert" value="Preview" />
+                        <input type="button" class="btn btn-danger" id="clear" value="Clear" />
+                        <input type="button" class="btn btn-default" id="renderEmail" value="Render" />
+                    </div>
                 </div>
             </div>
         </div>
