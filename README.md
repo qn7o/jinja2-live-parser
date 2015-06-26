@@ -14,8 +14,8 @@ Also, you'll need to have browsersync installed. Instructions on how to install 
 
 ## Setting frontend dependencies.
 
-	* Run $ npm i bower -g
-	* Run $ bower install
+	$ npm i bower -g
+	$ bower install
 
 ## Usage
 
