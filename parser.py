@@ -12,16 +12,21 @@ app = Flask(__name__)
 
 # Load filters in filters dir
 filter_path='filters'
-for filter in os.listdir(filter_path):
-    if not os.path.isfile(os.path.join(filter_path, filter)):
-        continue
-    else:
-        mod_name,file_ext = os.path.splitext(os.path.split(filter)[-1])
-        if file_ext.lower() == '.py':
-            py_mod = imp.load_source(mod_name, os.path.join(filter_path, filter))
-            for name, function in getmembers(py_mod):
-                    if isfunction(function):
-                        app.jinja_env.filters[name] = function
+filter_files =  [ ]
+
+# Find py files and turn then into filterpath/blah/filter.py
+for e in os.walk(filter_path, followlinks=True):
+  for f in e[2]:
+    if f.endswith('py'):
+      filter_files.append(os.path.join(e[0], f))
+
+for filter in filter_files:
+    mod_name,file_ext = os.path.splitext(os.path.split(filter)[-1])
+    if file_ext.lower() == '.py':
+        py_mod = imp.load_source(mod_name, filter)
+        for name, function in getmembers(py_mod):
+                if isfunction(function):
+                    app.jinja_env.filters[name] = function
 
 @app.route("/")
 def hello():
