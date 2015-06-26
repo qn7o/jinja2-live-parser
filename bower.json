@@ -8,7 +8,8 @@
   ],
   "dependencies": {
     "jquery": "~2.1.4",
-    "ace-builds": "~1.1.9"
+    "ace-builds": "~1.1.9",
+    "angularjs": "~1.4.1"
   },
   "devDependencies": {}
 }

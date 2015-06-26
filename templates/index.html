@@ -1,14 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="Falcon-email">
 
 <head>
     <script src="{{ url_for('static', filename='bower_modules/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bower_modules/angularjs/angular.js') }}"></script>
     <script src="{{ url_for('static', filename='bower_modules/ace-builds/src-noconflict/ace.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/convert.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/application.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/common/renderPreview.factory.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/renderPreview/renderPreview.directive.js') }}"></script>
+
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
-    <link src="{{ url_for('static', filename='bower_modules/codemirror/lib/codemirror.css') }}">
+
     <title>Jinja live parser</title>
     <script>
     $(document).ready(function() {
@@ -32,12 +38,12 @@
     </script>
 </head>
 
-<body>
+<body ng-controller="app">
     <form>
         <div id="page_wrap">
             <div class="boxes">
                 <div id="render" class="boxes__preview">
-                    {{ output }}
+                    <render-preview html="render"></render-preview>
                 </div>
                 <div class="boxes__sidebar box">
                     <div class="boxes__json">
