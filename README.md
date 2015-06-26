@@ -6,9 +6,11 @@ All you need is Python and preferably [pip](https://pypi.python.org/pypi/pip).
 
 ## Install
 
-    $ git clone git@github.com:abourguignon/jinja2-live-parser.git
-    $ pip install -r requirements.txt
-    $ python parser.py
+    $ git clone git@github.com:guymatz/jinja2-live-parser.git
+
+    Then install virtualenv with your native package manager or pip
+    Finally, 
+    $ ./run.sh
 
 
 ## Usage 
