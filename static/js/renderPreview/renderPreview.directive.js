@@ -8,8 +8,7 @@ angular.module('Falcon-email')
 		 	link: function (scope, element) {
 		 		scope.$watch('html', function( val ) {
 		 				element.html(val);
-		 		})
-		 	
+		 		});
 		 	}
 		 }		
 	});

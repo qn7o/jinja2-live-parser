@@ -10,7 +10,10 @@
     <script src="{{ url_for('static', filename='js/application.js') }}"></script>
 
     <script src="{{ url_for('static', filename='js/common/renderPreview.factory.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/common/aceEditor.factory.js') }}"></script>
+
     <script src="{{ url_for('static', filename='js/renderPreview/renderPreview.directive.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/editor/editor.directive.js') }}"></script>
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
@@ -27,13 +30,6 @@
         $(window).resize(function() {
             setHeight();
         });
-
-        // trigger extension
-        ace.require("ace/ext/language_tools");
-
-        var editor = ace.edit("editor");
-        editor.session.setMode("ace/mode/json");
-        editor.setTheme("ace/theme/twilight");
     });
     </script>
 </head>
@@ -47,15 +43,9 @@
                 </div>
                 <div class="boxes__sidebar box">
                     <div class="boxes__json">
-                        <div id="editor" class="json_textarea"></div>
+                        <editor on-update="updateRender($value)"></editor>
                     </div>
                     <div class="boxes__settings box">
-                        <label>
-                            <input type="checkbox" name="showwhitespaces" /> Show whitespaces</label>
-                        <br/>
-                        <input type="button" class="btn btn-success" id="convert" value="Preview" />
-                        <input type="button" class="btn btn-danger" id="clear" value="Clear" />
-                        <input type="button" class="btn btn-default" id="renderEmail" value="Render" />
                     </div>
                 </div>
             </div>

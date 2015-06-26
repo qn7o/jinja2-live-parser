@@ -3,11 +3,13 @@ angular.module('Falcon-email', [])
 
 		$scope.html = {}
 
-		previewRenderSrvc.render({
- 			'subject': 'lars'
- 		}).then(function (data) {
- 			$scope.render = data.html;
- 		});
+		$scope.updateRender = function (value) {
+			previewRenderSrvc.render(value).then(function (data) {
+ 				$scope.render = data.html;
+ 			});
+		}
+		
+		$scope.updateRender({})
 
 
 	});
