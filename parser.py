@@ -28,11 +28,7 @@ def render(channel, prefix, name):
 @app.route('/render/<channel>/<prefix>/<name>', methods=['POST'])
 def render_post(channel, prefix, name):
     template = _load_template(channel, prefix, name)
-    values = request.form.get('values')
-    try:
-        values = json.loads(values) if values else {}
-    except:
-        return 'Invalid JSON!'
+    values = request.get_json()
     rendered_tpl = template.render(values)
     if bool(int(request.form['showwhitespaces'])):
         rendered_tpl = rendered_tpl.replace(' ', u'•')
@@ -42,10 +38,10 @@ def render_post(channel, prefix, name):
 
 @app.route('/inline', methods=['POST'])
 def inline_css():
-    html = request.form.get('html')
-    return premailer.transform(html)
+    values = request.get_json()
+    return premailer.transform(values.get('html'))
 
 if __name__ == "__main__":
     config = Objector.from_argv()
     app.config.update(config)
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', debug=True)
