@@ -5,6 +5,7 @@ from random import choice
 from dronte import Objector
 import json
 import os
+import premailer
 
 
 app = Flask(__name__)
@@ -36,6 +37,12 @@ def render_post(channel, prefix, name):
         rendered_tpl = rendered_tpl.replace(' ', u'•')
 
     return Markup(rendered_tpl)
+
+
+@app.route('/inline', methods=['POST'])
+def inline_css():
+    html = request.form.get('html')
+    return premailer.transform(html)
 
 if __name__ == "__main__":
     config = Objector.from_argv()

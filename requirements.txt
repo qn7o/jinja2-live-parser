@@ -5,3 +5,4 @@ Werkzeug==0.9.6
 ipython==2.2.0
 itsdangerous==0.24
 falcon-dronte
+premailer
