@@ -10,6 +10,10 @@ A lightweight live parser for [Jinja2](http://jinja.pocoo.org/docs/dev/) based o
     $ pip install -r requirements.txt
     $ python parser.py config.yaml
 
+Note: if you have issues with installing the requirements related to `premailer`, please run the following command (or equivalent, depending on your system):
+
+    $ apt-get install libxml2-dev libxslt1-dev python-dev
+
 Also, you'll need to have browsersync installed. Instructions on how to install it can be found [here](http://www.browsersync.io/#install)
 
 ## Setting frontend dependencies.
