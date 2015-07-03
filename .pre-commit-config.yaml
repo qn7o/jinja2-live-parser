@@ -1,0 +1,23 @@
+- repo: git://github.com/pre-commit/pre-commit-hooks
+  sha: v0.3.0
+  hooks:
+  - id: check-yaml
+  - id: end-of-file-fixer
+  - id: flake8
+    args:
+    - --ignore=E501
+  - id: trailing-whitespace
+
+- repo: git://github.com/pre-commit/mirrors-pylint
+  sha: v1.3.1
+  hooks:
+  - id: pylint
+    args:
+    - --rcfile=.pylintrc
+
+- repo: git://github.com/FalconSocial/pre-commit-mirrors-pep257
+  sha: v0.3.2
+  hooks:
+  - id: pep257
+    args:
+      - --ignore=D301
