@@ -1,4 +1,11 @@
 {% for f in all_filters|sort() %}
-<li><h3>{{ f }}</h3>
-<li><em>{{ all_filters[f].__doc__ }}</em>
+{% if loop.index0 % 3 == 0 %}
+<tr>
+{% endif %}
+  <td title="{{ all_filters[f].__doc__ }}">
+      {{ f }}
+  </td>
+{% if loop.index0 % 3 == 2 %}
+</tr>
+{% endif %}
 {% endfor %}

@@ -37,15 +37,16 @@
                 <h1>Values (JSON)</h1>
                 <textarea id="values">{% include 'example_values.html' %}</textarea>
             </div>
-        </div>
-    </form>
 
-        <div class="row">
             <div class="col-md-5">
-                <h1>Functions</h1>
-                {% include 'functions.html' %}
+                <h1>Available Functions</h1>
+                <h3>mouse-over for doc-string</h3>
+                <table>
+                  {% include 'functions.html' %}
+                </table>
             </div>
         </div>
+    </form>
 </body>
 
 </html>

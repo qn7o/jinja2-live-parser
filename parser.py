@@ -19,6 +19,7 @@ added_filters = {}
 for e in os.walk(filter_path, followlinks=True):
   for f in e[2]:
     if f.endswith('py'):
+      print("Adding %s" % os.path.join(e[0], f))
       filter_files.append(os.path.join(e[0], f))
 
 for filter in filter_files:
