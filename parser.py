@@ -38,7 +38,9 @@ for filter in filter_files:
 
 @app.route("/")
 def hello():
-    return render_template('index.html')
+    return render_template('index.html',
+                      all_filters = app.jinja_env.filters
+           )
 
 
 @app.route('/convert', methods=['GET', 'POST'])
@@ -70,4 +72,4 @@ def convert():
 
 if __name__ == "__main__":
     app.debug = True
-    app.run()
+    app.run(host= '0.0.0.0')

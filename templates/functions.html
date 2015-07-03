@@ -1,0 +1,4 @@
+{% for f in all_filters|sort() %}
+<li><h3>{{ f }}</h3>
+<li><em>{{ all_filters[f].__doc__ }}</em>
+{% endfor %}
