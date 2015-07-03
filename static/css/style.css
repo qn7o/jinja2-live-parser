@@ -19,3 +19,7 @@ span.whitespace {
 label {
     font-weight: normal;
 }
+
+table, td {
+    border: 1px solid black;
+}

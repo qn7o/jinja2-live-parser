@@ -1,0 +1,11 @@
+{% for f in all_filters|sort() %}
+{% if loop.index0 % 3 == 0 %}
+<tr>
+{% endif %}
+  <td title="{{ all_filters[f].__doc__ }}">
+      {{ f }}
+  </td>
+{% if loop.index0 % 3 == 2 %}
+</tr>
+{% endif %}
+{% endfor %}

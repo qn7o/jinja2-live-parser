@@ -6,9 +6,11 @@ All you need is Python and preferably [pip](https://pypi.python.org/pypi/pip).
 
 ## Install
 
-    $ git clone git@github.com:abourguignon/jinja2-live-parser.git
-    $ pip install -r requirements.txt
-    $ python parser.py
+    $ git clone git@github.com:guymatz/jinja2-live-parser.git
+
+    Then install virtualenv with your native package manager or pip
+    Finally, 
+    $ ./run.sh
 
 ## Or through Dockerfile
 
@@ -23,7 +25,10 @@ Or simply `pull` it from registry (without building)
 
 ## Usage 
 
-You are all set, go to `http://localhost:5000/` and have fun.  
+You are all set, go to `http://localhost:5000/` and have fun.
+
+Custom filters can be added under the filters/ directory.
+See filters/test_filter.py for an example
 
 
 ## Preview
