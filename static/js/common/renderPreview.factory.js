@@ -13,11 +13,8 @@ angular.module('Falcon-email').factory('previewRenderSrvc', function ($http) {
 			        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(JSON.stringify(obj[p])));
 			        return str.join("&");
 			    },
-				data: {
-					values: data,
-					showwhitespaces: 0
-				},
-				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+				data: data,
+				headers: {'Content-Type': 'application/json'},
 			})
 			.then(function (response) {
 				return { html: response.data };

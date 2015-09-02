@@ -19,7 +19,7 @@ module.exports = {
             "port": 8080
         }
     },
-    "files": ["/opt/email/**"],
+    "files": ["/Users/larsfalcon/Documents/falconsocial/notifications-templates/**"],
     "watchOptions": {},
     "server": false,
     "proxy": "localhost:5000",

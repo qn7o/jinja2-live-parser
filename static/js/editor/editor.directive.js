@@ -12,13 +12,12 @@ angular.module('Falcon-email')
 				var editor = ace.edit(
 					element.find('.json_editor')[0]
 				);
-				console.log(editor)
 				editor.session.setMode("ace/mode/json");
 				editor.setTheme("ace/theme/twilight");
 
 				scope.updatePreview = function() {
 					// Parse the value of the element to an obj,
-					// that then wwe pass to the update function.
+					// that then we pass to the update function.
 					var value = JSON.parse(element.find('.ace_content').text());
 					scope.onUpdate({
 						'$value': value
