@@ -1,0 +1,29 @@
+[MESSAGES CONTROL]
+
+# Disable the message, report, category or checker with the given id(s).
+disable=import-error,line-too-long,duplicate-code,missing-docstring,too-few-public-methods,bad-builtin,super-init-not-called,star-args,too-many-arguments,too-many-locals,locally-disabled,fixme,too-many-branches,no-self-use,bad-continuation
+
+[VARIABLES]
+
+# Tells whether we should check for unused import in __init__ files.
+init-import=no
+
+# A regular expression matching the name of dummy variables (i.e. expectedly
+# not used).
+dummy-variables-rgx=_|__
+
+[BASIC]
+
+# Good variable names which should always be accepted, separated by a comma
+good-names=i,j,k,_,__,ok
+
+# Regular expression matching correct constant names
+const-rgx=(([A-Za-z_][A-Za-z0-9_]*)|(__.*__))$
+
+# Regular expression matching correct function names
+function-rgx=(test_)?[a-z_][a-z0-9_]{2,30}$
+
+[REPORTS OPTIONS]
+
+# Disable reports
+reports=no

@@ -1,41 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="Falcon-email">
+
 <head>
-    <script src="{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/convert.js') }}"></script>
+    <script src="{{ url_for('static', filename='bower_modules/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bower_modules/angularjs/angular.js') }}"></script>
+    <script src="{{ url_for('static', filename='bower_modules/ace-builds/src-noconflict/ace.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/application.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/common/renderPreview.factory.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/common/aceEditor.factory.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/renderPreview/renderPreview.directive.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/editor/editor.directive.js') }}"></script>
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
     <title>Jinja live parser</title>
+    <script>
+    $(document).ready(function() {
+        function setHeight() {
+            windowHeight = $(window).innerHeight();
+            $('.boxes').css('min-height', windowHeight);
+        };
+        setHeight();
+
+        $(window).resize(function() {
+            setHeight();
+        });
+    });
+    </script>
 </head>
 
-<body>
-    <form class="container">
-        <div class="row">
-            <div class="col-md-5">
-                <h1>Template</h1>
-                <textarea id="template">{% include 'example_template.html' %}</textarea>
-            </div>
-            <div class="col-md-5">
-                <h1>Render</h1>
-                <div id="render"></div>
-            </div>
-            <div class="col-md-2">
-                <h1>Settings</h1>
-                <div id="settings">
-                    <label><input type="checkbox" name="showwhitespaces" checked="checked" /> Show whitespaces</label><br/>
-                    <label><input type="checkbox" name="dummyvalues" /> Use dummy values</label>
-                    <input type="button" class="btn btn-success" id="convert" value="Convert" />
-                    <input type="button" class="btn btn-danger" id="clear" value="Clear" />
+<body ng-controller="app">
+    <form>
+        <div id="page_wrap">
+            <div class="boxes">
+                <div id="render" class="boxes__preview">
+                    <render-preview html="render"></render-preview>
                 </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-5">
-                <h1>Values (JSON)</h1>
-                <textarea id="values">{% include 'example_values.html' %}</textarea>
+                <div class="boxes__sidebar">
+                    <div class="boxes__json">
+                        <editor on-update="updateRender($value)" on-reset="updateRender($value)"></editor>
+                    </div>
+                    <div class="boxes__settings">
+                    </div>
+                </div>
             </div>
         </div>
     </form>

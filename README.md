@@ -1,32 +1,32 @@
+
 # Jinja2 live parser
 
-A lightweight live parser for [Jinja2](http://jinja.pocoo.org/docs/dev/) based on [Flask](http://flask.pocoo.org/) and [Jquery](http://jquery.com/).  
-All you need is Python and preferably [pip](https://pypi.python.org/pypi/pip).  
+A lightweight live parser for [Jinja2](http://jinja.pocoo.org/docs/dev/) based on [Flask](http://flask.pocoo.org/) and [Jquery](http://jquery.com/).
 
 
 ## Install
 
-    $ git clone git@github.com:abourguignon/jinja2-live-parser.git
+    $ git clone git@github.com:falconsocial/jinja2-live-parser.git
     $ pip install -r requirements.txt
-    $ python parser.py
+    $ python parser.py config.yaml
 
-## Or through Dockerfile
+Note: if you have issues with installing the requirements related to `premailer`, please run the following command (or equivalent, depending on your system):
 
-#### Build
-    
-    docker build -t mydocker/j2parser .
-    docker run -d -p 49153:5000 mydocker/j2parser
+    $ apt-get install libxml2-dev libxslt1-dev python-dev
 
-Or simply `pull` it from registry (without building)
+Also, you'll need to have browsersync installed. Instructions on how to install it can be found [here](http://www.browsersync.io/#install)
 
-    docker run -d -p 49153:5000 sahilsk/j2parser
+## Setting frontend dependencies.
 
-## Usage 
+	$ npm i bower -g
+	$ bower install
 
-You are all set, go to `http://localhost:5000/` and have fun.  
+## Usage
 
+* Clone the `notifications-templates` repository on your local file system
+* In your `bs-config.js`, change the `files` key to point to your notifications-templates repository location
+* Run `browser-sync` as follows:
+    `$ browser-sync start --config bs-config.js`
+* Open `http://localhost:3000/render/<channel>/<prefix>/<template>` in your browser, and edit your template in your favorite editor and have your preview pane refreshed with your changes automatically
 
-## Preview
-
-![preview](http://i.imgur.com/9tSiilb.png)
-
+Note that in the URL, you have to provide your template path you want to edit in the form of: `http://localhost:3000/render/<channel>/<prefix>/<template>`

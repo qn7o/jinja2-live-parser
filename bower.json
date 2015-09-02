@@ -1,0 +1,15 @@
+{
+  "name": "falcon-jinja-parser",
+  "version": "0.0.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "ace-builds": "~1.1.9",
+    "angularjs": "~1.4.1"
+  },
+  "devDependencies": {}
+}

@@ -1,45 +1,55 @@
+#! /usr/bin/env python
 # -*- coding: utf-8 -*-
-from flask import Flask, render_template, request
-from jinja2 import Template, Environment, meta
+from flask import Flask, render_template, request, Markup
+from jinja2 import Template, Environment, meta, FileSystemLoader
 from random import choice
+from dronte import Objector
 import json
+import os
+import premailer
 
 
 app = Flask(__name__)
 
-@app.route("/")
-def hello():
-    return render_template('index.html')
+
+def _load_template(channel, prefix, name):
+    env = Environment(
+        loader=FileSystemLoader(os.path.join(app.config['templates_path'], channel, prefix)))
+    return env.get_template(name)
 
 
-@app.route('/convert', methods=['GET', 'POST'])
-def convert():
-    dummy_values = [ 'Lorem', 'Ipsum', 'Amet', 'Elit', 'Expositum', 
-        'Dissimile', 'Superiori', 'Laboro', 'Torquate', 'sunt', 
-    ]
+@app.route('/render/<channel>/<prefix>/<name>', methods=['GET'])
+def render(channel, prefix, name):
+    template = _load_template(channel, prefix, name)
+    rendered_tpl = template.render()
+    return render_template('index.html', output=Markup(rendered_tpl))
 
-    tpl = Template(request.form['template'])
-    values = {}
 
-    if bool(int(request.form['dummyvalues'])):
-        # List variables (introspection)
-        env = Environment()
-        vars_to_fill = meta.find_undeclared_variables(env.parse(request.form['template']))
-
-        for v in vars_to_fill:
-            values[v] = choice(dummy_values)
-    else:
-        values = json.loads(request.form['values'])
-
-    rendered_tpl = tpl.render(values)
-
-    if bool(int(request.form['showwhitespaces'])):
-        # Replace whitespaces with a visible character (will be grayed with javascript)
+@app.route('/render/<channel>/<prefix>/<name>', methods=['POST'])
+def render_post(channel, prefix, name):
+    template = _load_template(channel, prefix, name)
+    values = request.get_json()
+    rendered_tpl = template.render(values.get('data'))
+    if values.get('show_whitespaces'):
         rendered_tpl = rendered_tpl.replace(' ', u'•')
 
-    return rendered_tpl.replace('\n', '<br />')
+    return Markup(rendered_tpl)
 
+
+@app.route('/inline', methods=['POST'])
+def inline_css():
+    values = request.get_json()
+    return premailer.transform(values.get('html'))
+
+
+@app.route('/inline/<channel>/<prefix>/<name>', methods=['POST'])
+def inline_css_from_file(channel, prefix, name):
+    template = _load_template(channel, prefix, name)
+    values = request.get_json()
+    rendered_tpl = template.render(values.get('data'))
+    return premailer.transform(rendered_tpl)
 
 if __name__ == "__main__":
-    app.debug = True
-    app.run()
+    config = Objector.from_argv()
+    app.config.update(config)
+    app.run(host='0.0.0.0', debug=True)
