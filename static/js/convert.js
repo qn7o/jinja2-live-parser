@@ -9,12 +9,14 @@ $(document).ready(function(){
     $('#convert').click(function() {
         var is_checked_showwhitespaces = $('input[name="showwhitespaces"]').is(':checked') ? 1:0;
         var is_checked_dummyvalues = $('input[name="dummyvalues"]').is(':checked') ? 1:0;
+        var input_type = $('input[name="input_type"]:checked').val();
 
 
         // Push the input to the Jinja2 api (Python)
         $.post('/convert', {
             template: $('#template').val(),
             values: $('#values').val(),
+            input_type: input_type,
             showwhitespaces: is_checked_showwhitespaces,
             dummyvalues: is_checked_dummyvalues
         }).done(function(response) {
