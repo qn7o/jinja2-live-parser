@@ -19,7 +19,7 @@ All you need is Python and preferably [pip](https://pypi.python.org/pypi/pip).
 
 Or simply `pull` it from registry (without building)
 
-    docker run -d -p 49153:5000 sahilsk/j2parser
+    docker run -d -p 5000:5000 sahilsk/j2parser
 
 ## Usage 
 
