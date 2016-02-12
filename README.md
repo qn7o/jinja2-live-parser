@@ -28,5 +28,5 @@ You are all set, go to `http://localhost:5000/` and have fun.
 
 ## Preview
 
-![preview](http://imgur.com/9EW0vuo)
+![preview](http://i.imgur.com/9EW0vuo.png)
 
