@@ -26,6 +26,7 @@
                 <div id="settings">
                     <label><input type="checkbox" name="showwhitespaces" checked="checked" /> Show whitespaces</label><br/>
                     <label><input type="checkbox" name="dummyvalues" /> Use dummy values</label>
+                    <label><input type="checkbox" name="use_yaml" /> Data is YAML</label>
                     <input type="button" class="btn btn-success" id="convert" value="Convert" />
                     <input type="button" class="btn btn-danger" id="clear" value="Clear" />
                 </div>
@@ -33,7 +34,7 @@
         </div>
 
         <div class="row">
-            <div class="col-md-5">
+            <div id="data" class="col-md-5">
                 <h1>Values (JSON)</h1>
                 <textarea id="values">{% include 'example_values.html' %}</textarea>
             </div>

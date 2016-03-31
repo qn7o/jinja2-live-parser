@@ -3,6 +3,7 @@ from flask import Flask, render_template, request
 from jinja2 import Template, Environment, meta
 from random import choice
 import json
+import yaml
 # For dynamic loading of filters
 import imp
 from inspect import getmembers, isfunction
@@ -61,7 +62,10 @@ def convert():
         for v in vars_to_fill:
             values[v] = choice(dummy_values)
     else:
-        values = json.loads(request.form['values'])
+        if int(request.form['use_yaml']):
+            values = yaml.load(request.form['values'])
+        else:
+            values = json.loads(request.form['values'])
 
     rendered_tpl = tpl.render(values)
 
