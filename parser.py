@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
+import os
+import sys
+import json
+import yaml
+import logging
+
 from flask import Flask, render_template, request
 from jinja2 import Template, Environment, meta, exceptions
 from random import choice
-import json
-import yaml
 
 app = Flask(__name__)
 
@@ -59,7 +63,28 @@ def convert():
 
     return rendered_tpl.replace('\n', '<br />')
 
+def save_log(logfile=None):
+    """Save parser log """
+    logname = logfile if logfile else "parser.log"
+    cwd = os.path.dirname(os.path.realpath(__file__))
+    logdir = os.path.join(cwd, "log")
+    
+    if not os.path.exists(logdir):
+        os.mkdir(logdir)
+    
+    logpath = os.path.join(logdir, logname)
+    logging.basicConfig(filename=logpath, level=logging.DEBUG)
+
+def server(debug=True, logfile=None):
+    # Set service runing as daemon
+    if debug is not True:
+        if 0 != os.fork():
+            sys.exit(0)
+            os.setsid()
+
+    save_log(logfile)
+    app.debug = debug
+    app.run(host='0.0.0.0', port=8089)
 
 if __name__ == "__main__":
-    app.debug = True
-    app.run()
+    server(debug=False)
