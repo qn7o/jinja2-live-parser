@@ -39,6 +39,14 @@
                 <h1>Values</h1>
                 <textarea id="values">{% include 'example_values.html' %}</textarea>
             </div>
+            <div class="col-md-7">
+                <h1>Custom Filters</h1>
+                <ul>
+                {% for f_name, f_func in custom_filters.items() %}
+                    <li>{{ f_name }}: {{ f_func.func_doc }}</li>
+                {% endfor %}
+                </ul>
+            </div>
         </div>
     </form>
 </body>
