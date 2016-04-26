@@ -15,26 +15,28 @@ app = Flask(__name__)
 
 
 @app.route("/")
-def hello():
+def home():
     return render_template('index.html')
 
 
 @app.route('/convert', methods=['GET', 'POST'])
 def convert():
+    jinja2_env = Environment()
+
+    # Load the template
+    try:
+        jinja2_tpl = jinja2_env.from_string(request.form['template'])
+    except (exceptions.TemplateSyntaxError, exceptions.TemplateError) as e:
+        return "Syntax error in jinja2 template: {0}".format(e)
+
+
     dummy_values = [ 'Lorem', 'Ipsum', 'Amet', 'Elit', 'Expositum',
         'Dissimile', 'Superiori', 'Laboro', 'Torquate', 'sunt',
     ]
-    # Check if template have no errors
-    try:
-        tpl = Template(request.form['template'])
-    except (exceptions.TemplateSyntaxError, exceptions.TemplateError) as e:
-        return "Syntax error in jinja2 template: {0}".format(e)
     values = {}
-
     if bool(int(request.form['dummyvalues'])):
-        # List variables (introspection)
-        env = Environment()
-        vars_to_fill = meta.find_undeclared_variables(env.parse(request.form['template']))
+        # List template variables (introspection)
+        vars_to_fill = meta.find_undeclared_variables(jinja2_env.parse(request.form['template']))
 
         for v in vars_to_fill:
             values[v] = choice(dummy_values)
@@ -56,15 +58,15 @@ def convert():
 
     # If ve have empty var array or other errors we need to catch it and show
     try:
-        rendered_tpl = tpl.render(values)
+        rendered_jinja2_tpl = jinja2_tpl.render(values)
     except (ValueError, TypeError) as e:
         return "Error in your values input filed: {0}".format(e)
 
     if bool(int(request.form['showwhitespaces'])):
         # Replace whitespaces with a visible character (will be grayed with javascript)
-        rendered_tpl = rendered_tpl.replace(' ', u'•')
+        rendered_jinja2_tpl = rendered_jinja2_tpl.replace(' ', u'•')
 
-    return rendered_tpl.replace('\n', '<br />')
+    return rendered_jinja2_tpl.replace('\n', '<br />')
 
 
 if __name__ == "__main__":
