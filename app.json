@@ -2,5 +2,11 @@
   "name": "Jinja2 live (web) parser",
   "description": "Jinja2 live (web) parser",
   "repository": "https://github.com/heroku/button-sample",
-  "keywords": ["Jinja2"]
+  "keywords": ["Jinja2"],
+  "env": {
+    "HOST": {
+      "description": "the IP to bind to",
+      "value": "0.0.0.0"
+    }
+  },
 }
