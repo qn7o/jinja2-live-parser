@@ -5,6 +5,7 @@ from flask import Flask, render_template, request
 from jinja2 import Environment, meta, exceptions
 from random import choice
 from inspect import getmembers, isfunction
+from cgi import escape
 import logging
 import logging.handlers
 import json
@@ -83,7 +84,7 @@ def convert():
         # Replace whitespaces with a visible character (will be grayed with javascript)
         rendered_jinja2_tpl = rendered_jinja2_tpl.replace(' ', u'•')
 
-    return rendered_jinja2_tpl.replace('\n', '<br />')
+    return escape(rendered_jinja2_tpl).replace('\n', '<br />')
 
 
 if __name__ == "__main__":
