@@ -2,10 +2,14 @@
 #render,
 #values {
     width: 100%;
-    min-height: 300px;
+    min-height: 250px;
     resize: vertical;
     font-family: "Courier New", Courier, monospace;
     border: 1px solid #ccc;
+}
+
+#values {
+    min-height: 200px;
 }
 
 #render {
