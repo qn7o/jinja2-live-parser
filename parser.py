@@ -5,7 +5,7 @@ from flask import Flask, render_template, request
 from jinja2 import Environment, meta, exceptions
 from random import choice
 from inspect import getmembers, isfunction
-from cgi import escape
+from html import escape
 import logging
 import logging.handlers
 import json
