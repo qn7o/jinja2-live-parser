@@ -6,17 +6,17 @@
 ###################################
 
 # Pull base image.
-FROM python:2.7
+FROM python:2.7-alpine
 
-RUN git clone https://github.com/qn7o/jinja2-live-parser.git /data
-
+# Copy files
+COPY . /data
 WORKDIR /data
 
 # Install dependencies
 RUN pip install -r requirements.txt
 
-# Change bind host
-RUN sed -i 's/host=config.HOST/host="0.0.0.0"/g' parser.py
+# Make host accessible. See config.py for more options
+ENV HOST 0.0.0.0
 
 # Expose port to Host
 EXPOSE 5000

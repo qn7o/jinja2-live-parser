@@ -1,45 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/convert.js') }}"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Jinja live parser</title>
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
-    <title>Jinja live parser</title>
+
+    <script src="{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/convert.js') }}"></script>
 </head>
 
 <body>
     <form class="container">
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-12">
                 <h1>Template</h1>
                 <textarea id="template">{% include 'example_template.html' %}</textarea>
             </div>
-            <div class="col-md-5">
+        </div>
+        <div class="row">
+            <div class="col-md-12">
                 <h1>Render</h1>
                 <div id="render"></div>
             </div>
+        </div>
+        <div class="row">
             <div class="col-md-2">
                 <h1>Settings</h1>
                 <div id="settings">
+                    <input type="button" class="btn btn-success" id="convert" value="Convert" />
+                    <input type="button" class="btn btn-danger" id="clear" value="Clear" />
                     <label><input type="checkbox" name="showwhitespaces" checked="checked" /> Show whitespaces</label><br/>
                     <label><input type="checkbox" name="dummyvalues" /> Use dummy values</label>
                     <label><input type="radio" name="input_type" value="json" checked="checked"/> JSON</label>
                     <label><input type="radio" name="input_type" value="yaml"/> YAML</label>
-                    <input type="button" class="btn btn-success" id="convert" value="Convert" />
-                    <input type="button" class="btn btn-danger" id="clear" value="Clear" />
                 </div>
             </div>
-        </div>
-
-        <div class="row">
             <div class="col-md-5">
                 <h1>Values</h1>
                 <textarea id="values">{% include 'example_values.html' %}</textarea>
             </div>
-            <div class="col-md-7">
+            <div class="col-md-5">
                 <h1>Custom Filters</h1>
                 <ul>
                 {% for f_name, f_func in custom_filters.items() %}
