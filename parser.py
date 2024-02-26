@@ -68,7 +68,7 @@ def convert():
         # Check YAML for errors
         elif request.form['input_type'] == "yaml":
             try:
-                values = yaml.load(request.form['values'])
+                values = yaml.safe_load(request.form['values'])
             except (ValueError, yaml.parser.ParserError, TypeError) as e:
                 return "Value error in YAML: {0}".format(e)
         else:

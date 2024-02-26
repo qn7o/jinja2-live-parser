@@ -6,7 +6,7 @@
 ###################################
 
 # Pull base image.
-FROM python:2.7
+FROM python:3.10
 
 RUN git clone https://github.com/qn7o/jinja2-live-parser.git /data
 
